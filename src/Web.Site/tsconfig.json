@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./wwwroot/dist",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "module": "CommonJS",
+    "jsx": "react",
+    "target": "ES5",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+  },
+  "include": [
+    "./React"
+  ],
+  "exclude": [
+    "./React/ssr"
+  ]
+}

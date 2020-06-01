@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -38,8 +40,18 @@ namespace RicardoGaefke.Web.Site
       services.AddSingleton<IQueue, Queue>();
 
       Bootstrap.DataProtection(services, Configuration);
+      Bootstrap.ConsentCookie(services, Configuration, HostEnvironment.IsDevelopment());
 
       Bootstrap.ConfigCors(services, Configuration, HostEnvironment.IsDevelopment());
+
+      services.AddNodeServices(options =>
+        {
+          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+          {
+            options.ProjectPath = Path.GetFullPath("/app");
+          }
+        }
+      );
 
       services
         .AddControllers()
@@ -80,6 +92,14 @@ namespace RicardoGaefke.Web.Site
       app.UseRouting();
       app.UseCors();
 
+      app.Use((context, next) =>
+      {
+        context.Response.Headers["Author"] = "Ricardo Gaefke";
+        context.Response.Headers["Author_email"] = "ricardogaefke@gmail.com";
+        context.Response.Headers["Author_URL"] = "www.ricardogaefke.com";
+        return next.Invoke();
+      });
+
       app.UseStaticFiles(new StaticFileOptions
       {
         OnPrepareResponse = ctx =>
@@ -96,12 +116,14 @@ namespace RicardoGaefke.Web.Site
 
       app.UseAuthentication();
       app.UseAuthorization();
+      app.UseCookiePolicy();
 
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}");
+        endpoints.MapFallbackToController("Index", "Home");
       });
     }
   }
