@@ -14,7 +14,9 @@ export default (props: WithTranslation): object => Yup.object().shape({
   Question5: Yup.string()
     .required(props.t('Form:question5.required')),
   Name: Yup.string()
-    .required(props.t('Form:name.required')),
+    .required(props.t('Form:name.required'))
+    .min(4, props.t('Form:name.min'))
+    .max(20, props.t('Form:name.max')),
   Email: Yup.string()
     .required(props.t('Form:email.required'))
     .email(props.t('Form:email.email')),

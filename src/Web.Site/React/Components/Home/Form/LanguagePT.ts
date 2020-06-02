@@ -38,6 +38,8 @@ export default {
     text: 'Nome',
     title: 'Por favor informe teu nome',
     required: 'Este campo é obrigatório',
+    min: 'Tamanho mínimo de 6 caracteres',
+    max: 'Tamanho máximo de 20 caracteres',
   },
   email: {
     text: 'Email',
@@ -50,7 +52,7 @@ export default {
     title: 'Clique aqui para salvar as informações e gerar um relatório',
   },
   feedback: {
-    success: 'Informações Salvas com sucesso',
-    failure: 'Desculpe, mas as informações não foram salvas',
+    success: 'Informações Salvas com sucesso!',
+    failure: 'Desculpe, mas as informações não foram salvas.',
   },
 } as ILanguage;

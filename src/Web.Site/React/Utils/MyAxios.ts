@@ -1,21 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
-import Hosts from './Hosts';
 
-export default (host: string): AxiosInstance => {
-  const myHost = new Hosts(host);
-
+export default (): AxiosInstance => {
   const myAxios = axios.create({
-    baseURL: myHost.Api(),
+    baseURL: '/',
     withCredentials: true,
   });
-
-  myAxios.interceptors.response.use((response): AxiosResponse => response,
-    (error: AxiosError): void => {
-      if (error.response?.status === 403) {
-        window.location.href = `${myHost.Identity()}403`;
-      }
-    });
 
   return myAxios;
 };

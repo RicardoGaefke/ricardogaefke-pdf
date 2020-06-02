@@ -29,7 +29,7 @@ export default withTranslation()(
               horizontal: 'right',
               vertical: 'bottom',
             }}
-            autoHideDuration={6000}
+            autoHideDuration={10000}
             dense
           >
             <AppBar />

@@ -35,6 +35,8 @@ export interface ILanguage {
     title: string,
     text: string,
     required: string,
+    min: string,
+    max: string,
   },
   email: {
     title: string,

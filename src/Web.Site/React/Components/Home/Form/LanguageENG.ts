@@ -38,6 +38,8 @@ export default {
     text: 'Name',
     title: 'Please enter your name',
     required: 'This field is required',
+    min: '4 character minimum',
+    max: '20 characters maximum',
   },
   email: {
     text: 'Email',
@@ -50,7 +52,7 @@ export default {
     title: 'Click here to save changes',
   },
   feedback: {
-    success: 'Successfully saved your data',
-    failure: 'Sorry but no data was saved',
+    success: 'Successfully saved your data!',
+    failure: 'Sorry but no data was saved.',
   },
 } as ILanguage;

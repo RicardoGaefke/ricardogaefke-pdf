@@ -4,6 +4,8 @@ import { withFormik } from 'formik';
 import { Typography, Divider } from '@material-ui/core';
 // eslint-disable-next-line no-unused-vars
 import { WithTranslation, withTranslation } from 'react-i18next';
+// eslint-disable-next-line no-unused-vars
+import { WithSnackbarProps, withSnackbar } from 'notistack';
 import setLanguage from './Language';
 // eslint-disable-next-line no-unused-vars
 import { IForm } from '../../../Interfaces/IForm';
@@ -11,21 +13,40 @@ import initialValues from './Form.InitialValues';
 import Validation from './Form.Validation';
 import MyForm from './Form';
 import useStyles from './Form.Styles';
+import MyAxios from '../../../Utils/MyAxios';
+// eslint-disable-next-line no-unused-vars
+import { IBasicReturn } from '../../../Interfaces/IBasicReturn';
 
-const SuperForm = withFormik<WithTranslation, IForm>({
+const SuperForm = withFormik<WithTranslation & WithSnackbarProps, IForm>({
   displayName: 'DefaultForm',
   enableReinitialize: true,
   mapPropsToValues: (): IForm => (initialValues),
   validationSchema: Validation,
-  handleSubmit: (values: IForm, { resetForm, setSubmitting }): void => {
-    // eslint-disable-next-line no-alert
-    alert(JSON.stringify(values));
+  handleSubmit: async (values: IForm, { resetForm, setSubmitting, props }): Promise<void> => {
+    const { enqueueSnackbar, t } = props;
+    await MyAxios().post<IBasicReturn>('api/SendData', values).then((response): void => {
+      const { data } = response;
+
+      if (data.Success) {
+        enqueueSnackbar(t('Form:feedback.success'), {
+          variant: 'success',
+        });
+      } else {
+        enqueueSnackbar(t('Form:feedback.failure'), {
+          variant: 'error',
+        });
+      }
+    }).catch((): void => {
+      enqueueSnackbar(t('Form:feedback.failure'), {
+        variant: 'error',
+      });
+    });
     setSubmitting(false);
     resetForm();
   },
 })(MyForm);
 
-const DefaultForm = withTranslation()(SuperForm);
+const DefaultForm = withTranslation()(withSnackbar(SuperForm));
 
 export default withTranslation()(
   (props: WithTranslation): React.ReactElement<WithTranslation> => {

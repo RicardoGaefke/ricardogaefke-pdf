@@ -1,9 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import { IBasicReturn } from './IBasicReturn';
-// eslint-disable-next-line no-unused-vars
-import { ICreated } from './ICreated';
-
-export interface IForm extends IBasicReturn, ICreated
+export interface IForm
 {
   Id: number;
   Guid: string;

@@ -4,6 +4,7 @@ import {
   Select, MenuItem, FormHelperText, Divider,
   FormControlLabel,
   Switch,
+  Typography,
 } from '@material-ui/core';
 // eslint-disable-next-line no-unused-vars
 import { WithTranslation, useTranslation } from 'react-i18next';
@@ -13,7 +14,7 @@ import { FormikProps } from 'formik';
 import { IForm } from '../../../Interfaces/IForm';
 // eslint-disable-next-line no-unused-vars
 import { IOptions } from '../../../Interfaces/IOptions';
-import useStyles from '../../../Utils/Form.Styles';
+import useStyles from './Form.Styles';
 import Options from './Options';
 
 export type IMyForm = FormikProps<IForm> & WithTranslation;
@@ -61,7 +62,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
           <FormControl
             className={classes.item}
             error={errors.Question1 as any && touched.Question1 as any}
-            variant="outlined"
+            variant="standard"
             size="small"
           >
             <InputLabel id="question1-label">{t('Form:question1.text')}</InputLabel>
@@ -91,7 +92,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
           <FormControl
             className={classes.item}
             error={errors.Question2 as any && touched.Question2 as any}
-            variant="outlined"
+            variant="standard"
             size="small"
           >
             <InputLabel id="question2-label">{t('Form:question2.text')}</InputLabel>
@@ -121,7 +122,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
           <FormControl
             className={classes.item}
             error={errors.Question3 as any && touched.Question3 as any}
-            variant="outlined"
+            variant="standard"
             size="small"
           >
             <InputLabel id="question3-label">{t('Form:question3.text')}</InputLabel>
@@ -151,7 +152,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
           <FormControl
             className={classes.item}
             error={errors.Question4 as any && touched.Question4 as any}
-            variant="outlined"
+            variant="standard"
             size="small"
           >
             <InputLabel id="question4-label">{t('Form:question4.text')}</InputLabel>
@@ -181,7 +182,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
           <FormControl
             className={classes.item}
             error={errors.Question5 as any && touched.Question5 as any}
-            variant="outlined"
+            variant="standard"
             size="small"
           >
             <InputLabel id="question5-label">{t('Form:question5.text')}</InputLabel>
@@ -236,7 +237,13 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
           </FormControl>
         </Grid>
       </Grid>
-      <Divider />
+      <Divider className={classes.divider} />
+      <Typography
+        variant="body1"
+        gutterBottom
+      >
+        Please inform data to receive the report.
+      </Typography>
       <Grid
         container
         spacing={2}
