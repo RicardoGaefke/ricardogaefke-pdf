@@ -6,6 +6,8 @@ import { Typography, Divider } from '@material-ui/core';
 import { WithTranslation, withTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars
 import { WithSnackbarProps, withSnackbar } from 'notistack';
+// eslint-disable-next-line no-unused-vars
+import { AxiosResponse } from 'axios';
 import setLanguage from './Language';
 // eslint-disable-next-line no-unused-vars
 import { IForm } from '../../../Interfaces/IForm';
@@ -24,7 +26,7 @@ const SuperForm = withFormik<WithTranslation & WithSnackbarProps, IForm>({
   validationSchema: Validation,
   handleSubmit: async (values: IForm, { resetForm, setSubmitting, props }): Promise<void> => {
     const { enqueueSnackbar, t } = props;
-    await MyAxios().post<IBasicReturn>('api/SendData', values).then((response): void => {
+    await MyAxios().post<IForm, AxiosResponse<IBasicReturn>>('api/SendData', values).then((response): void => {
       const { data } = response;
 
       if (data.Success) {

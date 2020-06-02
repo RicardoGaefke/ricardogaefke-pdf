@@ -36,8 +36,8 @@ namespace RicardoGaefke.Web.Site.Controllers
         Name = "",
         Email = "",
         Language = "ENG",
-        Theme = "dark",
-        Drawer = true,
+        Theme = "light",
+        Drawer = false,
         Config = false
       });
 

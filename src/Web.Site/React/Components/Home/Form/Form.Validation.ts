@@ -13,6 +13,8 @@ export default (props: WithTranslation): object => Yup.object().shape({
     .required(props.t('Form:question4.required')),
   Question5: Yup.string()
     .required(props.t('Form:question5.required')),
+  Info: Yup.string()
+    .max(950, props.t('Form:info.max')),
   Name: Yup.string()
     .required(props.t('Form:name.required'))
     .min(4, props.t('Form:name.min'))

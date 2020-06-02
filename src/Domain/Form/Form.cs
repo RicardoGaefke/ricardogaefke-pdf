@@ -22,6 +22,14 @@ namespace RicardoGaefke.Domain
     public Form()
     {}
 
+    public Form(int id, string guid)
+    {
+      DomainException.When(!string.IsNullOrEmpty(guid), "GUID is required!");
+
+      this.Id = id;
+      this.Guid = guid;
+    }
+
     public Form(string question1, string question2, string question3, string question4, string question5, bool approved, string info, string name, string email)
     {
       DomainException.When(!string.IsNullOrEmpty(question1), "Question1 is required!");

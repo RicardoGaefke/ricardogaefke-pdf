@@ -31,6 +31,11 @@ export interface ILanguage {
     checked: string,
     unchecked: string,
   },
+  info: {
+    title: string,
+    text: string,
+    max: string,
+  },
   name: {
     title: string,
     text: string,

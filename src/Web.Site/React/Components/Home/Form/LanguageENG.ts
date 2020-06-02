@@ -2,8 +2,8 @@
 import { ILanguage } from './ILanguage';
 
 export default {
-  title: 'Form to generate report',
-  subtitle: 'Please fill out this form and receive the automatically generated report in your email!',
+  title: 'Generate a PDF report',
+  subtitle: 'Please fill out this form and receive the PDF report in your email!',
   question1: {
     text: 'First Field',
     title: 'First Field in English',
@@ -33,6 +33,11 @@ export default {
     label: 'Approved?',
     checked: 'Approved',
     unchecked: 'Disapproved',
+  },
+  info: {
+    title: 'Any additional information',
+    text: 'Additional Information',
+    max: '950 characters maximum',
   },
   name: {
     text: 'Name',

@@ -11,9 +11,13 @@ namespace RicardoGaefke.Web.Site
   public class FileController : ControllerBase
   {
     private readonly ILogger<FileController> _logger;
-    public FileController(ILogger<FileController> logger)
+    private readonly IMyPdf _myPdf;
+    private readonly IQueue _queue;
+    public FileController(ILogger<FileController> logger, IMyPdf myPdf, IQueue queue)
     {
       _logger = logger;
+      _myPdf = myPdf;
+      _queue = queue;
     }
 
     [HttpPost("SendData")]
@@ -23,6 +27,12 @@ namespace RicardoGaefke.Web.Site
 
       try
       {
+        Form myForm = new Form(data.Question1, data.Question2, data.Question3, data.Question4, data.Question5, data.Approved, data.Info, data.Name, data.Email);
+
+        Form form = _myPdf.Insert(myForm);
+
+        _queue.SaveMessage("webjob-pdf", form.Id.ToString());
+
         _return.Success = true;
       }
       catch (DomainException ex)

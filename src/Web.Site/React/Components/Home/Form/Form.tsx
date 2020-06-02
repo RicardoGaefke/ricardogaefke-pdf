@@ -236,6 +236,30 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
             />
           </FormControl>
         </Grid>
+        <Grid
+          item
+          xs={12}
+          md={12}
+          lg={12}
+        >
+          <TextField
+            error={errors.Info as any && touched.Info as any}
+            label={t('Form:info.text')}
+            title={t('Form:info.title')}
+            name="Info"
+            id="Info"
+            value={values.Info}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={(errors.Info && touched.Info) && errors.Info}
+            variant="outlined"
+            className={classes.item}
+            fullWidth
+            size="small"
+            multiline
+            rows={3}
+          />
+        </Grid>
       </Grid>
       <Divider className={classes.divider} />
       <Typography

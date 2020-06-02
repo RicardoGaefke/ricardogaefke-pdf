@@ -2,8 +2,8 @@
 import { ILanguage } from './ILanguage';
 
 export default {
-  title: 'Formulário para gerar relatório',
-  subtitle: 'Por favor preencha este formulário e receba em teu email o relatório gerado automaticamente!',
+  title: 'Crie um relatório em PDF',
+  subtitle: 'Por favor preencha este formulário e receba em teu email o relatório PDF!',
   question1: {
     text: 'Primeiro campo',
     title: 'Primeiro campo em Português',
@@ -33,6 +33,11 @@ export default {
     label: 'Aprovado?',
     checked: 'Aprovado',
     unchecked: 'Reprovado',
+  },
+  info: {
+    title: 'Qualquer informação adicional',
+    text: 'Informações adicionais',
+    max: 'Tamanho máximo de 950 caracteres',
   },
   name: {
     text: 'Nome',
