@@ -11,6 +11,9 @@ export default makeStyles((theme: Theme): IStyles => ({
   container: {
     display: 'flex',
     flex: 1,
+    '@media screen and (min-width: 768px)': {
+      paddingTop: 30,
+    },
   },
   content: {
     backgroundColor: (theme.palette.type === 'dark') ? 'white' : 'yellow',

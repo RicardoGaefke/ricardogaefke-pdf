@@ -1,0 +1,56 @@
+// eslint-disable-next-line no-unused-vars
+import { ILanguage } from './ILanguage';
+
+export default {
+  title: 'Form to generate report',
+  subtitle: 'Please fill out this form and receive the automatically generated report in your email!',
+  question1: {
+    text: 'First Field',
+    title: 'First Field in English',
+    required: 'This field is required',
+  },
+  question2: {
+    text: 'Second Field',
+    title: 'Second Field in English',
+    required: 'This field is required',
+  },
+  question3: {
+    text: 'Third Field',
+    title: 'Third Field in English',
+    required: 'This field is required',
+  },
+  question4: {
+    text: 'Fourth Field',
+    title: 'Fourth Field in English',
+    required: 'This field is required',
+  },
+  question5: {
+    text: 'Fifth Field',
+    title: 'Fifth Field in English',
+    required: 'This field is required',
+  },
+  approved: {
+    label: 'Approved?',
+    checked: 'Approved',
+    unchecked: 'Disapproved',
+  },
+  name: {
+    text: 'Name',
+    title: 'Please enter your name',
+    required: 'This field is required',
+  },
+  email: {
+    text: 'Email',
+    title: 'Please enter your email',
+    required: 'This field is required',
+    email: 'Invalid email',
+  },
+  button: {
+    text: 'Save changes',
+    title: 'Click here to save changes',
+  },
+  feedback: {
+    success: 'Successfully saved your data',
+    failure: 'Sorry but no data was saved',
+  },
+} as ILanguage;

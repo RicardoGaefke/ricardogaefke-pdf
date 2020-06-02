@@ -1,11 +1,12 @@
 import React from 'react';
-import { Container, Grid, Typography } from '@material-ui/core';
-import { useStateValue } from '../../../Initial/Context/StateProvider';
+import {
+  Container, Grid, Paper, Divider,
+} from '@material-ui/core';
 import useStyles from './Styles';
+import Form from '../Form/Form.Context';
 
 export default (): React.ReactElement => {
   const classes = useStyles({});
-  const [{ Language }] = useStateValue();
 
   return (
     <Container className={classes.container}>
@@ -14,19 +15,17 @@ export default (): React.ReactElement => {
         spacing={2}
         direction="row"
         justify="center"
-        alignItems="center"
+        alignItems="flex-start"
       >
         <Grid
           item
           md={6}
           xs={12}
         >
-          <Typography
-            variant="h4"
-            align="center"
-          >
-            {Language}
-          </Typography>
+          <Paper elevation={3}>
+            <Divider />
+            <Form />
+          </Paper>
         </Grid>
       </Grid>
     </Container>
