@@ -1,0 +1,70 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  name: Azure Pipelines
+  demands: npm
+variables:
+  buildConfiguration: 'Release'
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Restore WebJob.XML'
+  inputs:
+    command: restore
+    projects: '$(Parameters.projects)'
+  enabled: false
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build WebJob.XML'
+  inputs:
+    projects: '$(Parameters.projects)'
+    arguments: '-r linux-x64 --configuration $(BuildConfiguration)'
+  enabled: false
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore Web.Site'
+  inputs:
+    command: restore
+    projects: '**/Web.Site.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build Web.Site'
+  inputs:
+    projects: '**/Web.Site.csproj'
+    arguments: '-r linux-x64 --configuration $(BuildConfiguration)'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: src/Web.Site/
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm lint'
+  inputs:
+    command: custom
+    workingDir: src/Web.Site/
+    verbose: false
+    customCommand: 'run lint --fix'
+
+- task: Npm@1
+  displayName: 'npm build'
+  inputs:
+    command: custom
+    workingDir: src/Web.Site/
+    verbose: false
+    customCommand: 'run build'
+
+- task: CopyFiles@2
+  displayName: 'Copy dockerfiles'
+  inputs:
+    Contents: '$(Parameters.Contents)'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
