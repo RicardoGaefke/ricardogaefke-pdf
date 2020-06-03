@@ -34,6 +34,14 @@ export default {
     checked: 'Aprovado',
     unchecked: 'Reprovado',
   },
+  english: {
+    label: 'Relatório em Inglês',
+    title: 'O relatório em Inglês é enviado por padrão',
+  },
+  portuguese: {
+    label: 'Relatório em Português',
+    title: 'Gostaria de receber uma versão em Português?',
+  },
   info: {
     title: 'Qualquer informação adicional',
     text: 'Informações adicionais',

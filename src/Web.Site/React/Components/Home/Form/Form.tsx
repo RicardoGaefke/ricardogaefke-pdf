@@ -245,7 +245,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
         >
           <FormControlLabel
             disabled
-            title="English report is sent by default"
+            title={t('Form:english.title')}
             control={(
               <Checkbox
                 checked={values.English}
@@ -253,7 +253,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
                 color="primary"
               />
             )}
-            label="English report"
+            label={t('Form:english.label')}
           />
         </Grid>
         <Grid
@@ -263,7 +263,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
           lg={6}
         >
           <FormControlLabel
-            title="Would you like to receive a Portuguese version?"
+            title={t('Form:portuguese.title')}
             control={(
               <Checkbox
                 checked={values.Portuguese}
@@ -273,7 +273,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
                 color="primary"
               />
             )}
-            label="Portuguese report"
+            label={t('Form:portuguese.label')}
           />
         </Grid>
         <Grid

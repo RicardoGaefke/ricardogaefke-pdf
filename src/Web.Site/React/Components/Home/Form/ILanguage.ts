@@ -31,6 +31,14 @@ export interface ILanguage {
     checked: string,
     unchecked: string,
   },
+  english: {
+    label: string,
+    title: string,
+  },
+  portuguese: {
+    label: string,
+    title: string,
+  },
   info: {
     title: string,
     text: string,

@@ -34,6 +34,14 @@ export default {
     checked: 'Approved',
     unchecked: 'Disapproved',
   },
+  english: {
+    label: 'English report',
+    title: 'English report is sent by default',
+  },
+  portuguese: {
+    label: 'Portuguese report',
+    title: 'Would you like to receive a Portuguese version?',
+  },
   info: {
     title: 'Any additional information',
     text: 'Additional Information',
