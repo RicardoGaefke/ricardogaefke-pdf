@@ -32,7 +32,7 @@ namespace RicardoGaefke.Web.Site
     {
       services.Configure<Secrets.ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
 
-      services.AddSingleton<IMyPdf, MyPdf>();
+      services.AddSingleton<IInfo, Info>();
       services.AddSingleton<IBlob, Blob>();
       services.AddSingleton<IQueue, Queue>();
 

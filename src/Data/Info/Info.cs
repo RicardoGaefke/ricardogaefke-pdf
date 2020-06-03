@@ -6,11 +6,11 @@ using RicardoGaefke.Domain;
 
 namespace RicardoGaefke.Data
 {
-  public class MyPdf : IMyPdf
+  public class Info : IInfo
   {
     private readonly IOptions<Secrets.ConnectionStrings> _connStr;
 
-    public MyPdf(IOptions<Secrets.ConnectionStrings> ConnectionStrings)
+    public Info(IOptions<Secrets.ConnectionStrings> ConnectionStrings)
     {
       _connStr = ConnectionStrings;
     }

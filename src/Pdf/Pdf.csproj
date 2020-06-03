@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="itext7" Version="7.1.11" />
+  </ItemGroup>
+
 </Project>

@@ -11,12 +11,12 @@ namespace RicardoGaefke.Web.Site
   public class FileController : ControllerBase
   {
     private readonly ILogger<FileController> _logger;
-    private readonly IMyPdf _myPdf;
+    private readonly IInfo _info;
     private readonly IQueue _queue;
-    public FileController(ILogger<FileController> logger, IMyPdf myPdf, IQueue queue)
+    public FileController(ILogger<FileController> logger, IInfo info, IQueue queue)
     {
       _logger = logger;
-      _myPdf = myPdf;
+      _info = info;
       _queue = queue;
     }
 
@@ -41,7 +41,7 @@ namespace RicardoGaefke.Web.Site
           data.Email
         );
 
-        Form form = _myPdf.Insert(myForm);
+        Form form = _info.Insert(myForm);
 
         _queue.SaveMessage("webjob-pdf", form.Id.ToString());
 

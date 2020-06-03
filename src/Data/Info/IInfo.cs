@@ -2,7 +2,7 @@ using RicardoGaefke.Domain;
 
 namespace RicardoGaefke.Data
 {
-  public interface IMyPdf
+  public interface IInfo
   {
     Form Insert(Form data);
     // Form GetFileInfo(int id);
