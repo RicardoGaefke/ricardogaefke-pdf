@@ -34,6 +34,8 @@ namespace RicardoGaefke.Data
           Cmd.Parameters.AddWithValue("@QUESTION4", data.Question4);
           Cmd.Parameters.AddWithValue("@QUESTION5", data.Question5);
           Cmd.Parameters.AddWithValue("@APPROVED", data.Approved);
+          Cmd.Parameters.AddWithValue("@ENGLISH", data.English);
+          Cmd.Parameters.AddWithValue("@PORTUGUESE", data.Portuguese);
           Cmd.Parameters.AddWithValue("@INFO", data.Info);
           Cmd.Parameters.AddWithValue("@NAME", data.Name);
           Cmd.Parameters.AddWithValue("@EMAIL", data.Email);

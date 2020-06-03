@@ -5,6 +5,7 @@ import {
   FormControlLabel,
   Switch,
   Typography,
+  Checkbox,
 } from '@material-ui/core';
 // eslint-disable-next-line no-unused-vars
 import { WithTranslation, useTranslation } from 'react-i18next';
@@ -50,7 +51,7 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
       <Grid
         container
         spacing={2}
-        justify="center"
+        justify="flex-start"
         alignItems="center"
       >
         <Grid
@@ -235,6 +236,45 @@ export default (props: IMyForm): React.ReactElement<IForm> => {
               label={((values.Approved) ? t('Form:approved.checked') : t('Form:approved.unchecked'))}
             />
           </FormControl>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={12}
+          lg={6}
+        >
+          <FormControlLabel
+            disabled
+            title="English report is sent by default"
+            control={(
+              <Checkbox
+                checked={values.English}
+                name="English"
+                color="primary"
+              />
+            )}
+            label="English report"
+          />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={12}
+          lg={6}
+        >
+          <FormControlLabel
+            title="Would you like to receive a Portuguese version?"
+            control={(
+              <Checkbox
+                checked={values.Portuguese}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="Portuguese"
+                color="primary"
+              />
+            )}
+            label="Portuguese report"
+          />
         </Grid>
         <Grid
           item

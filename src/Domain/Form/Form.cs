@@ -11,6 +11,8 @@ namespace RicardoGaefke.Domain
     public string Question4 { get; set; }
     public string Question5 { get; set; }
     public bool Approved {get; set; }
+    public bool English { get; set; }
+    public bool Portuguese { get; set; }
     public string Info { get; set;}
     public string Name { get; set; }
     public string Email { get; set; }
@@ -30,7 +32,19 @@ namespace RicardoGaefke.Domain
       this.Guid = guid;
     }
 
-    public Form(string question1, string question2, string question3, string question4, string question5, bool approved, string info, string name, string email)
+    public Form(
+      string question1,
+      string question2,
+      string question3,
+      string question4,
+      string question5,
+      bool approved,
+      bool english,
+      bool portuguese,
+      string info,
+      string name,
+      string email
+    )
     {
       DomainException.When(!string.IsNullOrEmpty(question1), "Question1 is required!");
       DomainException.When(!string.IsNullOrEmpty(question2), "Question2 is required!");
@@ -46,6 +60,8 @@ namespace RicardoGaefke.Domain
       this.Question4 = question4;
       this.Question5 = question5;
       this.Approved = approved;
+      this.English = english;
+      this.Portuguese = portuguese;
       this.Info = info;
       this.Name = name;
       this.Email = email;

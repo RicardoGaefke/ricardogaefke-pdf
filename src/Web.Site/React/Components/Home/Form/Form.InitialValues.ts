@@ -10,6 +10,8 @@ export default {
   Question4: '',
   Question5: '',
   Approved: true,
+  English: true,
+  Portuguese: false,
   Info: '',
   Name: '',
   Email: '',

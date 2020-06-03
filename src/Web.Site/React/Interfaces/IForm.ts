@@ -8,6 +8,8 @@ export interface IForm
   Question4: string;
   Question5: string;
   Approved: boolean;
+  English: boolean;
+  Portuguese: boolean;
   Info: string;
   Name: string;
   Email: string;

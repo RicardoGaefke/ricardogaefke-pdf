@@ -27,7 +27,19 @@ namespace RicardoGaefke.Web.Site
 
       try
       {
-        Form myForm = new Form(data.Question1, data.Question2, data.Question3, data.Question4, data.Question5, data.Approved, data.Info, data.Name, data.Email);
+        Form myForm = new Form(
+          data.Question1,
+          data.Question2,
+          data.Question3,
+          data.Question4,
+          data.Question5,
+          data.Approved,
+          data.English,
+          data.Portuguese,
+          data.Info,
+          data.Name,
+          data.Email
+        );
 
         Form form = _myPdf.Insert(myForm);
 
