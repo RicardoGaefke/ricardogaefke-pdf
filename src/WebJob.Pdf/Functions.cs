@@ -40,6 +40,26 @@ namespace RicardoGaefke.WebJob.Pdf
       _email = myEmail;
     }
 
+    private void SaveFile(Image pdfFile)
+    {
+      if (_config.Value.ASPNETCORE_ENVIRONMENT == "Development")
+      {
+        if (!Directory.Exists("outpdf/"))
+        {
+          Directory.CreateDirectory("outpdf/");
+        }
+
+        using (FileStream file = new FileStream($"outpdf/{pdfFile.Name}", FileMode.Create, FileAccess.Write))
+        {
+          file.Write(pdfFile.ByteArray, 0, pdfFile.ByteArray.Length);
+        }
+      }
+      else
+      {
+        _blob.Save(pdfFile);
+      }
+    }
+
     public async Task ProcessQueueMessageWebJobXml
     (
       [QueueTrigger("webjob-pdf")]
@@ -50,24 +70,18 @@ namespace RicardoGaefke.WebJob.Pdf
     {
       Form info = _info.GetFileInfo(Convert.ToInt32(message));
 
-      Image pdf = new Image($"{info.Guid}-eng.pdf", "application/pdf", _pdf.CreateEnglish(info));
+      Image pdfEnglish = new Image($"{info.Guid}-eng.pdf", "application/pdf", _pdf.CreateEnglish(info));
 
-      if (_config.Value.ASPNETCORE_ENVIRONMENT == "Development")
-      {
-        if (!Directory.Exists("outpdf/"))
-        {
-          Directory.CreateDirectory("outpdf/");
-        }
+      SaveFile(pdfEnglish);
 
-        using (FileStream file = new FileStream($"outpdf/{info.Guid}.pdf", FileMode.Create, FileAccess.Write))
-        {
-          file.Write(pdf.ByteArray, 0, pdf.ByteArray.Length);
-        }
-      }
-      else
+      if (info.Portuguese)
       {
-        _blob.Save(pdf);
+        Image pdfPortuguese = new Image($"{info.Guid}-pt.pdf", "application/pdf", _pdf.CreatePortuguese(info));
+
+        SaveFile(pdfPortuguese);
       }
+
+
     }
   }
 }
