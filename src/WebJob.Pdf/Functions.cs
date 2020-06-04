@@ -42,7 +42,7 @@ namespace RicardoGaefke.WebJob.Pdf
 
     public async Task ProcessQueueMessageWebJobXml
     (
-      [QueueTrigger("webjob-pdf-dev")]
+      [QueueTrigger("webjob-pdf")]
       string message,
       int DequeueCount,
       ILogger logger
