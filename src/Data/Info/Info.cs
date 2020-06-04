@@ -57,5 +57,49 @@ namespace RicardoGaefke.Data
 
       return new Form(id, guid);
     }
+
+    public Form GetFileInfo(int id)
+    {
+      Form form = null;
+
+      using (SqlConnection Con = new SqlConnection(_connStr.Value.SqlServer))
+      {
+        using (SqlCommand Cmd = new SqlCommand())
+        {
+          Cmd.CommandType = CommandType.StoredProcedure;
+          Cmd.Connection = Con;
+          Cmd.CommandText = "[sp_PDF_INFO]";
+
+          Cmd.Parameters.AddWithValue("@ID", id);
+
+          Con.Open();
+
+          using (SqlDataReader MyDR = Cmd.ExecuteReader())
+          {
+            if (MyDR.HasRows)
+            {
+              MyDR.Read();
+
+              form = new Form(
+                MyDR.GetGuid(0).ToString(),
+                MyDR.GetString(1),
+                MyDR.GetString(2),
+                MyDR.GetString(3),
+                MyDR.GetString(4),
+                MyDR.GetString(5),
+                MyDR.GetBoolean(6),
+                MyDR.GetBoolean(7),
+                MyDR.GetString(8),
+                MyDR.GetString(9),
+                MyDR.GetString(10),
+                MyDR.GetDateTime(11)
+              );
+            }
+          }
+        }
+      }
+
+      return form;
+    }
   }
 }

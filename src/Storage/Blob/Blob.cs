@@ -22,7 +22,7 @@ namespace RicardoGaefke.Storage
     {
       CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(_connStr.Value.Storage);
       CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-      CloudBlobContainer container = cloudBlobClient.GetContainerReference("webjob-xml");
+      CloudBlobContainer container = cloudBlobClient.GetContainerReference("webjob-pdf");
       container.CreateIfNotExists();
 
       return container;
@@ -37,12 +37,12 @@ namespace RicardoGaefke.Storage
       blob.UploadFromByteArray(file, 0, file.Length);
     }
 
-    public void SaveJson(Image data)
+    public void Save(Image data)
     {
       CloudBlobContainer container = MyContainer();
       CloudBlockBlob blob = container.GetBlockBlobReference(data.Name);
-      blob.Properties.ContentType = "application/json";
-      blob.UploadText(data.Src);
+      blob.Properties.ContentType = data.Mime;
+      blob.UploadFromByteArray(data.ByteArray, 0, data.ByteArray.Length);
     }
 
     public BlobDownloadInfo Download(string file)

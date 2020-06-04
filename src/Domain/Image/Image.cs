@@ -15,9 +15,20 @@ namespace RicardoGaefke.Domain
     public int Size {get;set;}
     public string CreatedBy { get; set; }
     public string Created { get; set; }
+    public byte[] ByteArray { get; set; }
 
     public Image()
     {
+    }
+
+    public Image(string name, string mime, byte[] byteArray)
+    {
+      DomainException.When(!string.IsNullOrEmpty(mime), "Mime is required!");
+      DomainException.When(!string.IsNullOrEmpty(name), "Name is required!");
+
+      this.Name = name;
+      this.Mime = mime;
+      this.ByteArray = byteArray;
     }
 
     public Image (string data, string mime, string name)

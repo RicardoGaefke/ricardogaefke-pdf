@@ -46,7 +46,8 @@ namespace RicardoGaefke.WebJob.Pdf
           services.AddSingleton<IBlob, Blob>();
           services.AddSingleton<IQueue, Queue>();
           services.AddSingleton<IMyEmail, MyEmail>();
-          services.AddSingleton<IPdf, Pdf>();
+          services.AddSingleton<IInfo, Info>();
+          services.AddSingleton<IMyPdf, MyPdf>();
         })
         .UseConsoleLifetime()
       ;

@@ -8,4 +8,8 @@
     <PackageReference Include="itext7" Version="7.1.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
 </Project>
