@@ -7,5 +7,7 @@ namespace RicardoGaefke.Pdf
     string Answer();
     string Footer();
     string Signature();
+    string Approved();
+    string Disapproved();
   }
 }

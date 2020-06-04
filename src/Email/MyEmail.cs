@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,14 +34,23 @@ namespace RicardoGaefke.Email
       };
     }
 
+    private void AddAttach(SendGridMessage msg, string fileName)
+    {
+      using (var ms = new MemoryStream())
+      {
+        _blob.Download(fileName).Content.CopyTo(ms);
+        msg.AddAttachment(fileName, Convert.ToBase64String(ms.ToArray()));
+      }
+    }
+
     public async Task<string> SendSuccessMessage(Form data)
     {
       SendGridClient client = new SendGridClient(_connectionStrings.Value.SendGrid);
 
       var msg = message(
-        "Success! Your XML to JSON converter report",
-        "Success! Your xml file was converted by Ricardo Gaefke's WebJob.",
-        "<strong>Success! Your xml file was converted by <a href=\"http://webjobs.ricardogaefke.com\">Ricardo Gaefke's WebJob</a>.</strong>"
+        "Success! Your PDF Report is here",
+        "Success! Your report was created by Ricardo Gaefke's PDF WebJob.",
+        "<strong>Success! Your PDF report was created by <a href=\"http://pdf.ricardogaefke.com\">Ricardo Gaefke's PDF WebJob</a>.</strong>"
       );
 
       msg.AddTo(new EmailAddress(data.Email, data.Name));
@@ -50,10 +60,12 @@ namespace RicardoGaefke.Email
         msg.AddBcc(new EmailAddress("ricardogaefke@gmail.com", "Ricardo Gaefke"));
       }
 
-      MemoryStream ms = new MemoryStream();
-      _blob.Download(data.FileName).Content.CopyTo(ms);
+      AddAttach(msg, $"{data.Guid}-eng.pdf");
 
-      msg.AddAttachment(data.FileName, Convert.ToBase64String(ms.ToArray()));
+      if (data.Portuguese)
+      {
+        AddAttach(msg, $"{data.Guid}-pt.pdf");
+      }
 
       Response response = await client.SendEmailAsync(msg);
 
@@ -65,9 +77,9 @@ namespace RicardoGaefke.Email
       SendGridClient client = new SendGridClient(_connectionStrings.Value.SendGrid);
 
       var msg = message(
-        "Failed! Your XML to JSON converter report",
-        "Failed! Your xml file was NOT converted by Ricardo Gaefke's WebJob.",
-        $"<strong>Failed! Your xml file was NOT converted by <a href=\"http://webjobs.ricardogaefke.com\">Ricardo Gaefke's WebJob</a>.</strong>"
+        "Failed! Your PDF report",
+        "Failed! Your PDF report was NOT created by Ricardo Gaefke's PDF WebJob.",
+        $"<strong>Failed! Your PDF report was NOT created by <a href=\"http://pdf.ricardogaefke.com\">Ricardo Gaefke's PDF WebJob</a>.</strong>"
       );
 
       msg.AddTo(new EmailAddress(data.Email, data.Name));

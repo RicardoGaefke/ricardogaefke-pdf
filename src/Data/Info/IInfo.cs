@@ -6,6 +6,6 @@ namespace RicardoGaefke.Data
   {
     Form Insert(Form data);
     Form GetFileInfo(int id);
-    // void UpdateFileInfo(Form data);
+    void UpdateFileInfo(int id, bool success, int dequeue, string message);
   }
 }

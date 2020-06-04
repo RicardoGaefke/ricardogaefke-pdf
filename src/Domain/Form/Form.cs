@@ -33,6 +33,15 @@ namespace RicardoGaefke.Domain
       this.Guid = guid;
     }
 
+    public Form(string name, string email)
+    {
+      DomainException.When(!string.IsNullOrEmpty(name), "Name is required!");
+      DomainException.When(!string.IsNullOrEmpty(email), "Email is required!");
+
+      this.Name = name;
+      this.Email = email;
+    }
+
     public Form(
       string question1,
       string question2,

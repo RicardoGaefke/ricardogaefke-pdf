@@ -40,27 +40,7 @@ namespace RicardoGaefke.WebJob.Pdf
       _email = myEmail;
     }
 
-    private void SaveFile(Image pdfFile)
-    {
-      if (_config.Value.ASPNETCORE_ENVIRONMENT == "Development")
-      {
-        if (!Directory.Exists("outpdf/"))
-        {
-          Directory.CreateDirectory("outpdf/");
-        }
-
-        using (FileStream file = new FileStream($"outpdf/{pdfFile.Name}", FileMode.Create, FileAccess.Write))
-        {
-          file.Write(pdfFile.ByteArray, 0, pdfFile.ByteArray.Length);
-        }
-      }
-      else
-      {
-        _blob.Save(pdfFile);
-      }
-    }
-
-    public async Task ProcessQueueMessageWebJobXml
+    public async Task ProcessQueueMessageWebJobPdf
     (
       [QueueTrigger("webjob-pdf")]
       string message,
@@ -72,16 +52,32 @@ namespace RicardoGaefke.WebJob.Pdf
 
       Image pdfEnglish = new Image($"{info.Guid}-eng.pdf", "application/pdf", _pdf.CreateEnglish(info));
 
-      SaveFile(pdfEnglish);
+      _blob.Save(pdfEnglish);
 
       if (info.Portuguese)
       {
         Image pdfPortuguese = new Image($"{info.Guid}-pt.pdf", "application/pdf", _pdf.CreatePortuguese(info));
 
-        SaveFile(pdfPortuguese);
+        _blob.Save(pdfPortuguese);
       }
 
+      string SGMsg = await _email.SendSuccessMessage(info);
 
+      _info.UpdateFileInfo(Convert.ToInt32(message), true, DequeueCount, SGMsg);
+    }
+
+    public async Task ProcessQueueMessageWebJobPdfPoison
+    (
+      [QueueTrigger("webjob-pdf-poison")]
+      string message,
+      int DequeueCount,
+      ILogger logger
+    )
+    {
+      Form info = _info.GetFileInfo(Convert.ToInt32(message));
+      Form mailMsg = new Form(info.Name, info.Email);
+      string SGMsg = await _email.SendErrorMessage(mailMsg);
+      _info.UpdateFileInfo(Convert.ToInt32(message), false, DequeueCount, SGMsg);
     }
   }
 }

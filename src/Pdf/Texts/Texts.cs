@@ -29,6 +29,16 @@ namespace RicardoGaefke.Pdf
       {
         return "Document digitally signed by";
       }
+
+      public string Approved()
+      {
+        return "APPROVED";
+      }
+
+      public string Disapproved()
+      {
+        return "DISAPPROVED";
+      }
     }
 
     public class Portuguese : IText
@@ -56,6 +66,16 @@ namespace RicardoGaefke.Pdf
       public string Signature()
       {
         return "Documento assinado digitalmente por";
+      }
+
+      public string Approved()
+      {
+        return "APROVADO";
+      }
+
+      public string Disapproved()
+      {
+        return "REPROVADO";
       }
     }
   }

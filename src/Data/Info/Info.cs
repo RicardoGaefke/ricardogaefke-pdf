@@ -101,5 +101,27 @@ namespace RicardoGaefke.Data
 
       return form;
     }
+
+    public void UpdateFileInfo(int id, bool success, int dequeue, string message)
+    {
+      using (SqlConnection Con = new SqlConnection(_connStr.Value.SqlServer))
+      {
+        using (SqlCommand Cmd = new SqlCommand())
+        {
+          Cmd.CommandType = CommandType.StoredProcedure;
+          Cmd.Connection = Con;
+          Cmd.CommandText = "[sp_PDF_UPDATE]";
+
+          Cmd.Parameters.AddWithValue("@ID", id);
+          Cmd.Parameters.AddWithValue("@SUCCESS", success);
+          Cmd.Parameters.AddWithValue("@DEQUEUE", dequeue);
+          Cmd.Parameters.AddWithValue("@MESSAGE", message);
+
+          Con.Open();
+
+          Cmd.ExecuteNonQuery();
+        }
+      }
+    }
   }
 }

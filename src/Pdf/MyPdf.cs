@@ -83,7 +83,7 @@ namespace RicardoGaefke.Pdf
         .SetBold()
         .SetTextAlignment(TextAlignment.CENTER)
         .SetMarginTop(10)
-        .SetMarginBottom(80)
+        .SetMarginBottom(50)
       ;
 
       paragraph.Add(new Text($"{title} "));
@@ -97,6 +97,20 @@ namespace RicardoGaefke.Pdf
       );
 
       doc.Add(paragraph);
+    }
+
+    private void AddResult(Document doc, string result, iText.Kernel.Colors.Color color)
+    {
+      Paragraph pQuestion = new Paragraph()
+        .SetFontSize(30)
+        .SetBold()
+        .SetTextAlignment(TextAlignment.RIGHT)
+        .SetMarginTop(5)
+        .SetMarginBottom(5)
+        .SetFontColor(color)
+      ;
+      pQuestion.Add(result);
+      doc.Add(pQuestion);
     }
 
     private void AddQuestion(Document doc, string question, string answer, string number, string option)
@@ -177,7 +191,7 @@ namespace RicardoGaefke.Pdf
       Paragraph pName = SignatureParagraph();
       pName
         .SetBorderTop(new SolidBorder(ColorConstants.LIGHT_GRAY, 1))
-        .SetMarginTop(100)
+        .SetMarginTop(50)
       ;
 
       pName.Add(
@@ -215,6 +229,30 @@ namespace RicardoGaefke.Pdf
       doc.Add(pCode);
     }
 
+    private void AddInfo(Document doc, string info)
+    {
+      Paragraph paragraph = new Paragraph()
+        .SetFontSize(12)
+        .SetTextAlignment(TextAlignment.JUSTIFIED)
+        .SetMarginTop(10)
+        .SetMarginBottom(10)
+      ;
+
+      paragraph.Add(
+        new Text("INFO: ")
+        .SetBold()
+      );
+
+      paragraph.Add(
+        new Text(info)
+      );
+
+      if (!string.IsNullOrEmpty(info))
+      {
+        doc.Add(paragraph);
+      }
+    }
+
     public byte[] CreateEnglish(Form info)
     {
       byte[] ba;
@@ -236,6 +274,12 @@ namespace RicardoGaefke.Pdf
           AddQuestion(doc, English.Question(), English.Answer(), "3", info.Question3);
           AddQuestion(doc, English.Question(), English.Answer(), "4", info.Question4);
           AddQuestion(doc, English.Question(), English.Answer(), "5", info.Question5);
+          AddInfo(doc, info.Info);
+          AddResult(
+            doc,
+            (info.Approved) ? English.Approved() : English.Disapproved(),
+            (info.Approved) ? ColorConstants.BLUE : ColorConstants.RED
+            );
           AddSignature(doc, info.Name, info.Email, English.Signature(), info.When, CultureInfo.CreateSpecificCulture("en-US"), info.Guid);
 
           /// header and footer
@@ -271,6 +315,12 @@ namespace RicardoGaefke.Pdf
           AddQuestion(doc, Portuguese.Question(), Portuguese.Answer(), "3", info.Question3);
           AddQuestion(doc, Portuguese.Question(), Portuguese.Answer(), "4", info.Question4);
           AddQuestion(doc, Portuguese.Question(), Portuguese.Answer(), "5", info.Question5);
+          AddInfo(doc, info.Info);
+          AddResult(
+            doc,
+            (info.Approved) ? Portuguese.Approved() : Portuguese.Disapproved(),
+            (info.Approved) ? ColorConstants.BLUE : ColorConstants.RED
+            );
           AddSignature(doc, info.Name, info.Email, Portuguese.Signature(), info.When, CultureInfo.CreateSpecificCulture("pt-BR"), info.Guid);
 
           /// header and footer

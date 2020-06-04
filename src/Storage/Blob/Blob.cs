@@ -48,7 +48,7 @@ namespace RicardoGaefke.Storage
     public BlobDownloadInfo Download(string file)
     {
       BlobServiceClient blobServiceClient = new BlobServiceClient(_connStr.Value.Storage);
-      BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("webjob-xml");
+      BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient("webjob-pdf");
       BlobClient blobClient = containerClient.GetBlobClient(file);
 
       return blobClient.Download();
