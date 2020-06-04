@@ -43,6 +43,7 @@ namespace RicardoGaefke.WebJob.Pdf
           ;
 
           services.Configure<Secrets.ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+          services.Configure<Secrets.Config>((IConfigurationRoot)Configuration);
           services.AddSingleton<IBlob, Blob>();
           services.AddSingleton<IQueue, Queue>();
           services.AddSingleton<IMyEmail, MyEmail>();

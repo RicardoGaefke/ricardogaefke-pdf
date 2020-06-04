@@ -17,6 +17,7 @@ namespace RicardoGaefke.WebJob.Pdf
   public class Functions
   {
     private readonly IOptions<Secrets.ConnectionStrings> _connStr;
+    private readonly IOptions<Secrets.Config> _config;
     private readonly IInfo _info;
     private readonly IMyPdf _pdf;
     private readonly IBlob _blob;
@@ -24,6 +25,7 @@ namespace RicardoGaefke.WebJob.Pdf
 
     public Functions(
       IOptions<Secrets.ConnectionStrings> connStr,
+      IOptions<Secrets.Config> config,
       IInfo info,
       IMyPdf myPdf,
       IBlob blob,
@@ -31,6 +33,7 @@ namespace RicardoGaefke.WebJob.Pdf
     )
     {
       _connStr = connStr;
+      _config = config;
       _info = info;
       _pdf = myPdf;
       _blob = blob;
@@ -39,7 +42,7 @@ namespace RicardoGaefke.WebJob.Pdf
 
     public async Task ProcessQueueMessageWebJobXml
     (
-      [QueueTrigger("webjob-pdf")]
+      [QueueTrigger("webjob-pdf-dev")]
       string message,
       int DequeueCount,
       ILogger logger
@@ -48,11 +51,23 @@ namespace RicardoGaefke.WebJob.Pdf
       Form info = _info.GetFileInfo(Convert.ToInt32(message));
 
       Image pdf = new Image($"{info.Guid}-eng.pdf", "application/pdf", _pdf.CreateEnglish(info));
-      _blob.Save(pdf);
-      // using (FileStream file = new FileStream($"out/{info.Guid}.pdf", FileMode.Create, FileAccess.Write))
-      // {
-      //   file.Write(pdf.ByteArray, 0, pdf.ByteArray.Length);
-      // }
+
+      if (_config.Value.ASPNETCORE_ENVIRONMENT == "Development")
+      {
+        if (!Directory.Exists("outpdf/"))
+        {
+          Directory.CreateDirectory("outpdf/");
+        }
+
+        using (FileStream file = new FileStream($"outpdf/{info.Guid}.pdf", FileMode.Create, FileAccess.Write))
+        {
+          file.Write(pdf.ByteArray, 0, pdf.ByteArray.Length);
+        }
+      }
+      else
+      {
+        _blob.Save(pdf);
+      }
     }
   }
 }

@@ -512,6 +512,7 @@ temp/
 ### ignore my dist files to build on the cloud
 dist/
 ssr/
+outpdf/
 
 ### ignore local connection strings e others
 appsettings.json

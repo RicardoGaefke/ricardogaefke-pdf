@@ -15,6 +15,6 @@ services:
       - "8080:8080"
     networks:
       - my-network
-  # webjobs-pdf:
-  #   image: ricardogaefke/ricardogaefke-pdf:webjob_pdf
-  #   container_name: webjobs_pdf
+  webjobs-pdf:
+    image: ricardogaefke/ricardogaefke-pdf:pdf_webjob
+    container_name: webjobs_pdf

@@ -18,5 +18,10 @@ namespace RicardoGaefke.Domain
       public string AzureWebJobsDashboard { get; set; }
       public string AzureWebJobsStorage { get; set; }
     }
+
+    public class Config
+    {
+      public string ASPNETCORE_ENVIRONMENT { get; set; }
+    }
   }
 }
