@@ -35,7 +35,7 @@ namespace RicardoGaefke.Pdf
           return ColorConstants.BLACK;
       }
     }
-    private void AddFooter(Document doc, PdfDocument pdfDoc, string text, string guid)
+    private void AddFooter(Document doc, PdfDocument pdfDoc, string text, string guid, string language)
     {
       Paragraph footer = new Paragraph($"{text} ")
         .SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD))
@@ -44,7 +44,7 @@ namespace RicardoGaefke.Pdf
         .SetWidth(539)
       ;
 
-      Link link = new Link($"https://pdf.ricardogaefke.com/check/{guid}", PdfAction.CreateURI($"https://pdf.ricardogaefke.com/check/{guid}"));
+      Link link = new Link($"https://pdf.ricardogaefke.com/check/{guid}", PdfAction.CreateURI($"https://pdf.ricardogaefke.com/check/{guid}/{language}"));
 
       footer.Add(link);
 
@@ -280,10 +280,10 @@ namespace RicardoGaefke.Pdf
             (info.Approved) ? English.Approved() : English.Disapproved(),
             (info.Approved) ? ColorConstants.BLUE : ColorConstants.RED
             );
-          AddSignature(doc, info.Name, info.Email, English.Signature(), info.When, CultureInfo.CreateSpecificCulture("en-US"), info.Guid, "-eng");
+          AddSignature(doc, info.Name, info.Email, English.Signature(), info.When, CultureInfo.CreateSpecificCulture("en-US"), info.Guid, "eng");
 
           /// header and footer
-          AddFooter(doc, pdf, English.Footer(), info.Guid);
+          AddFooter(doc, pdf, English.Footer(), info.Guid, "eng");
           AddHeader(doc, pdf);
 
           doc.Close();
@@ -321,10 +321,10 @@ namespace RicardoGaefke.Pdf
             (info.Approved) ? Portuguese.Approved() : Portuguese.Disapproved(),
             (info.Approved) ? ColorConstants.BLUE : ColorConstants.RED
             );
-          AddSignature(doc, info.Name, info.Email, Portuguese.Signature(), info.When, CultureInfo.CreateSpecificCulture("pt-BR"), info.Guid, "-pt");
+          AddSignature(doc, info.Name, info.Email, Portuguese.Signature(), info.When, CultureInfo.CreateSpecificCulture("pt-BR"), info.Guid, "pt");
 
           /// header and footer
-          AddFooter(doc, pdf, Portuguese.Footer(), info.Guid);
+          AddFooter(doc, pdf, Portuguese.Footer(), info.Guid, "pt");
           AddHeader(doc, pdf);
 
           doc.Close();
