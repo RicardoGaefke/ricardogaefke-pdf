@@ -168,11 +168,11 @@ namespace RicardoGaefke.Pdf
       ;
     }
 
-    private iText.Layout.Element.Image QrCode(string code)
+    private iText.Layout.Element.Image QrCode(string code, string language)
     {
       ICode qrCode = new Code();
 
-      Bitmap image = qrCode.GetImage($"https://pdf.ricardogaefke.com/check/{code}");
+      Bitmap image = qrCode.GetImage($"https://pdf.ricardogaefke.com/check/{code}/{language}");
 
       MemoryStream ms = new MemoryStream();
       image.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
@@ -186,7 +186,7 @@ namespace RicardoGaefke.Pdf
       return finalImage;
     }
 
-    private void AddSignature(Document doc, string name, string email, string signature, DateTime date, CultureInfo culture, string code)
+    private void AddSignature(Document doc, string name, string email, string signature, DateTime date, CultureInfo culture, string code, string language)
     {
       Paragraph pName = SignatureParagraph();
       pName
@@ -221,7 +221,7 @@ namespace RicardoGaefke.Pdf
        .SetMarginTop(-5)
       ;
 
-      pCode.Add(QrCode(code));
+      pCode.Add(QrCode(code, language));
 
       doc.Add(pName);
       doc.Add(pEmail);
@@ -280,7 +280,7 @@ namespace RicardoGaefke.Pdf
             (info.Approved) ? English.Approved() : English.Disapproved(),
             (info.Approved) ? ColorConstants.BLUE : ColorConstants.RED
             );
-          AddSignature(doc, info.Name, info.Email, English.Signature(), info.When, CultureInfo.CreateSpecificCulture("en-US"), info.Guid);
+          AddSignature(doc, info.Name, info.Email, English.Signature(), info.When, CultureInfo.CreateSpecificCulture("en-US"), info.Guid, "-eng");
 
           /// header and footer
           AddFooter(doc, pdf, English.Footer(), info.Guid);
@@ -321,7 +321,7 @@ namespace RicardoGaefke.Pdf
             (info.Approved) ? Portuguese.Approved() : Portuguese.Disapproved(),
             (info.Approved) ? ColorConstants.BLUE : ColorConstants.RED
             );
-          AddSignature(doc, info.Name, info.Email, Portuguese.Signature(), info.When, CultureInfo.CreateSpecificCulture("pt-BR"), info.Guid);
+          AddSignature(doc, info.Name, info.Email, Portuguese.Signature(), info.When, CultureInfo.CreateSpecificCulture("pt-BR"), info.Guid, "-pt");
 
           /// header and footer
           AddFooter(doc, pdf, Portuguese.Footer(), info.Guid);
