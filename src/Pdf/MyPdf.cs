@@ -44,7 +44,7 @@ namespace RicardoGaefke.Pdf
         .SetWidth(539)
       ;
 
-      Link link = new Link($"https://pdf.ricardogaefke.com/check/{guid}", PdfAction.CreateURI($"https://pdf.ricardogaefke.com/check/{guid}/{language}"));
+      Link link = new Link($"https://pdf.ricardogaefke.com/check/{guid}/{language}", PdfAction.CreateURI($"https://pdf.ricardogaefke.com/check/{guid}/{language}"));
 
       footer.Add(link);
 
