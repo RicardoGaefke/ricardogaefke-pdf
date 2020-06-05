@@ -10,12 +10,14 @@ RUN dotnet publish -c Release ./WebJob.Pdf.csproj -r linux-musl-x64 -o out
 
 FROM mcr.microsoft.com/dotnet/core/runtime:3.1-alpine as runtime
 
+RUN apk add libgdiplus --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+
 WORKDIR /app
 
 COPY --from=build /app/src/WebJob.Pdf/out ./
 
 ENTRYPOINT ["./WebJob.Pdf"]
 
-# docker build -f .\Dockerfile.webjob.teste.cloud -t webjob_teste_cloud .
-# docker create webjob_teste_cloud
-# docker run -it --rm webjob_teste_cloud
+# docker build -f .\Dockerfile.webjob.pdf.cloud -t webjob_pdf_cloud .
+# docker create webjob_pdf_cloud
+# docker run -it --rm webjob_pdf_cloud
