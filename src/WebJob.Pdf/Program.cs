@@ -31,7 +31,7 @@ namespace RicardoGaefke.WebJob.Pdf
         .ConfigureLogging((context, b) =>
         {
           b.AddConsole();
-          b.SetMinimumLevel(LogLevel.Information);
+          b.SetMinimumLevel(LogLevel.Debug);
         })
         .ConfigureServices((context, services) =>
         {

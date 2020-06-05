@@ -123,5 +123,26 @@ namespace RicardoGaefke.Data
         }
       }
     }
+
+    public void RegisterError(string message, string stack, string token)
+    {
+      using (SqlConnection Con = new SqlConnection(_connStr.Value.SqlServer))
+      {
+        using (SqlCommand Cmd = new SqlCommand())
+        {
+          Cmd.CommandType = CommandType.StoredProcedure;
+          Cmd.Connection = Con;
+          Cmd.CommandText = "[sp_PDF_REGISTER_ERROR]";
+
+          Cmd.Parameters.AddWithValue("@MESSAGE", message);
+          Cmd.Parameters.AddWithValue("@STACK", stack);
+          Cmd.Parameters.AddWithValue("@TOKEN", token);
+
+          Con.Open();
+
+          Cmd.ExecuteNonQuery();
+        }
+      }
+    }
   }
 }
