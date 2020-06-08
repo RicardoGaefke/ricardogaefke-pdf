@@ -45,6 +45,13 @@ namespace RicardoGaefke.Storage
       blob.UploadFromByteArray(data.ByteArray, 0, data.ByteArray.Length);
     }
 
+    public bool Exists(string file)
+    {
+      CloudBlobContainer container = MyContainer();
+      CloudBlockBlob blob = container.GetBlockBlobReference(file);
+      return blob.Exists();
+    }
+
     public BlobDownloadInfo Download(string file)
     {
       BlobServiceClient blobServiceClient = new BlobServiceClient(_connStr.Value.Storage);

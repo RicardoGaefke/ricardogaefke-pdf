@@ -5,8 +5,9 @@ namespace RicardoGaefke.Storage
 {
   public interface IBlob
   {
-    public void SaveBase64(Image data);
-    public void Save(Image data);
-    public BlobDownloadInfo Download(string file);
+    void SaveBase64(Image data);
+    void Save(Image data);
+    bool Exists(string file);
+    BlobDownloadInfo Download(string file);
   }
 }

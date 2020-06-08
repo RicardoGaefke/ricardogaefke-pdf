@@ -64,7 +64,8 @@ namespace RicardoGaefke.DI
                   "https://localhost:5055",
                   "https://localhost:5060",
                   "https://localhost:5065",
-                  "https://localhost:8080"
+                  "https://localhost:8080",
+                  "http://localhost:9001"
                 )
                 .AllowAnyMethod()
                 .AllowAnyHeader()

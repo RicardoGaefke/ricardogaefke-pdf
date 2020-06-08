@@ -1,3 +1,5 @@
+using System.IO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RicardoGaefke.Domain;
@@ -13,11 +15,13 @@ namespace RicardoGaefke.Web.Site
     private readonly ILogger<FileController> _logger;
     private readonly IInfo _info;
     private readonly IQueue _queue;
-    public FileController(ILogger<FileController> logger, IInfo info, IQueue queue)
+    private readonly IBlob _blob;
+    public FileController(ILogger<FileController> logger, IInfo info, IQueue queue, IBlob blob)
     {
       _logger = logger;
       _info = info;
       _queue = queue;
+      _blob = blob;
     }
 
     [HttpPost("SendData")]
@@ -61,6 +65,20 @@ namespace RicardoGaefke.Web.Site
       }
 
       return _return;
+    }
+
+    [AllowAnonymous]
+    [HttpGet("show/{file}/{language}/report.pdf")]
+    public object Show(string file, string language)
+    {
+      string fileName = $"{file}-{language}.pdf";
+
+      if(!_blob.Exists(fileName))
+      {
+        throw new FileNotFoundException("Blob not found!", fileName);
+      }
+
+      return File(_blob.Download($"{file}-{language}.pdf").Content, "application/pdf");
     }
   }
 }
