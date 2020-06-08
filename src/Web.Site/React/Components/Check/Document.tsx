@@ -11,9 +11,7 @@ export default (props: IProps): React.ReactElement => {
   const { href } = props;
   const classes = useStyles({});
 
-  // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-  // pdfjs.GlobalWorkerOptions.workerSrc = `//${Hosts(window.location.hostname)}/dist/vendors~pdfjsWorker.js`;
-  pdfjs.GlobalWorkerOptions.workerSrc = '//pdf.ricardogaefke.com/dist/vendors~pdfjsWorker.js';
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
   return (
     <>
