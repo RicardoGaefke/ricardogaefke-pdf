@@ -7,6 +7,6 @@ interface IStyles {
 // eslint-disable-next-line no-unused-vars
 export default makeStyles((): IStyles => ({
   pdf: {
-    maxWidth: '95%',
+    maxWidth: 584,
   },
 }));

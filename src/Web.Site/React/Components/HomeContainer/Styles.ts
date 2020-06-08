@@ -10,6 +10,7 @@ export default makeStyles((): IStyles => ({
     flex: 1,
     '@media screen and (min-width: 768px)': {
       paddingTop: 30,
+      paddingBottom: 30,
     },
   },
 }));

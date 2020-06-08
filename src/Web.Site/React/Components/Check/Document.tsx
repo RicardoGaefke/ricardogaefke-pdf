@@ -24,6 +24,7 @@ export default (props: IProps): React.ReactElement => {
       >
         <Page
           pageNumber={1}
+          width={584}
         />
       </Document>
     </>
