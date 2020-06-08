@@ -68,6 +68,7 @@ namespace RicardoGaefke.Web.Site
     }
 
     [AllowAnonymous]
+    [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Client)]
     [HttpGet("show/{file}/{language}/report.pdf")]
     public object Show(string file, string language)
     {
