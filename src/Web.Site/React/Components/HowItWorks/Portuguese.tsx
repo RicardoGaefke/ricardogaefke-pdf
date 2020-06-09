@@ -12,39 +12,44 @@ export default (): React.ReactElement => {
   return (
     <>
       <Typography variant="h3" align="center" className={classes.paragraph} gutterBottom>
-        How It Works
+        Como funciona
       </Typography>
       <Typography variant="subtitle1" align="center" className={classes.paragraph} gutterBottom>
-        This is a simple example of async integration using Azure WebJobs on an Azure Linux docker-compose WebApp.
+        Este é um exemplo simples de integração assíncrona usando Azure WebJobs em uma WebApp
+        Linux com docker-compose.
       </Typography>
       <Divider />
       <Typography variant="body1" align="justify" className={classes.paragraph} gutterBottom>
-        It has a simple form to fill with some information (just like a kind of inspection). Inserted data is sent
-        to server and you&apos;ll always receive an answer. If everything runs fine, you&apos;ll receive an email
-        with your PDF report in the Languages you choose. Otherwise, you&apos;ll receive an error message.
+        A aplicação é composta de um formulário simples para preencher com algumas informações (como
+        uma espécie de
+        <i>check list</i>
+        ). Os dados inseridos são enviados ao servidor e você sempre receberá uma resposta. Se tudo
+        correr bem, você receberá um email com o seu relatório em PDF nos idiomas que você escolheu.
+        Caso contrário, você receberá uma mensagem de erro.
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph}>
+        Os&nbsp;
         <Link
           href="https://docs.microsoft.com/pt-br/azure/app-service/webjobs-create"
           target="_blank"
           title="Azure WebJobs"
         >
-          Azure WebJobs
+          WebJobs do Azure
         </Link>
-        &nbsp;are background services that are perfect for services integration and/or long time tasks
-        (like PDF generation and external API calls).
+        &nbsp;Os WebJobs do Azure são serviços em segundo plano que são perfeitos para integração de
+        serviços e / ou tarefas de longa duração (como geração de PDF e chamadas de APIs externas).
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph}>
-        WebJobs run connected to Azure Storage Queues and one of the best resources (in my opinion) is the
-        ability to use
+        Os WebJobs executados conectados às Filas de Armazenamento do Azure e um dos melhores recursos
+        (na minha opinião) é a capacidade de usar uma fila
         <Chip label="-poison" size="small" className={classes.label} />
-        queue. When a run fails after X times (default is five), the message is sent
-        to a
+        . Quando uma execução falha após X vezes (o padrão é cinco), a mensagem é enviada para uma fila
+        de
         <Chip label="-poison" size="small" className={classes.label} />
-        queue. So if for any reason your execution falls in an error, you can have a second WebJob Function
-        connected to the
+        . Portanto, se por algum motivo sua execução apresentar um erro, você poderá ter uma segunda função
+        em teu WebJob conectada à fila
         <Chip label="-poison" size="small" className={classes.label} />
-        queue to handle the situation.
+        para contornar com a situação de erro.
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph}>
         Tech summary:
@@ -76,7 +81,8 @@ export default (): React.ReactElement => {
         GitHub
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph}>
-        The repo of this example (Web.Site + WebJob) is public and can be found at&nbsp;
+        O repositório completo (Web.Site + WebJob) desta aplicação de exemplo é
+        público e pode ser encontrado em&nbsp;
         <Link
           href="https://github.com/RicardoGaefke/ricardogaefke-pdf"
           target="_blank"
@@ -93,7 +99,8 @@ export default (): React.ReactElement => {
         Docker registry
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph}>
-        The containers of this app are registered in a public repo and can be found at&nbsp;
+        As imagens Docker desta aplicação estão registradas em um repositório Docker
+        público em&nbsp;
         <Link
           href="https://hub.docker.com/r/ricardogaefke/ricardogaefke-pdf"
           target="_blank"
@@ -137,15 +144,25 @@ export default (): React.ReactElement => {
       </Table>
 
       <Typography variant="body1" align="justify" className={classes.paragraph}>
-        This application is automatically built, tested and deployed by Azure Pipelines. Each
-        git push to
+        Esta aplicação tem
+        <i>build</i>
+        , teste e
+        <i>deploy</i>
+        feitos automaticamente pelo Azure Pipelines. Cada vez que a branch
         <Chip label="master" size="small" className={classes.label} />
-        or to a PR is built and tested by Azure Pipelines. If the build of
+        do repositório no GitHub é alterado, o
+        <i>build</i>
+        é automático. Se tudo correr bem, o
+        <i>deploy</i>
+        tem início imediato e atualiza a aplicação. Lembrando também que todos
+        os PRs feitos na branch
         <Chip label="master" size="small" className={classes.label} />
-        branch is ok the Release takes place and updates the app using Docker integration.
+        também são validados pelo
+        <i>Pipeline</i>
+        .
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph} gutterBottom>
-        This is the public&nbsp;
+        Este é o link para o&nbsp;
         <Link
           href="https://dev.azure.com/ricardogaefke/ricardogaefke-pdf"
           target="_blank"
@@ -153,7 +170,7 @@ export default (): React.ReactElement => {
         >
           Azure Pipeline
         </Link>
-        .
+        &nbsp;público.
       </Typography>
     </>
   );
