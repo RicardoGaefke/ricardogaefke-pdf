@@ -33,8 +33,6 @@ export default (): React.ReactElement => {
         if (ex.response?.data.includes('System.IO.FileNotFoundException')) {
           setSuccess(false);
           setLoading(false);
-        } else {
-          console.log('ex', ex);
         }
       });
   }, []);

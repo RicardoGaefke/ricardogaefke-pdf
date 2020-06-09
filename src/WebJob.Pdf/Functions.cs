@@ -68,7 +68,7 @@ namespace RicardoGaefke.WebJob.Pdf
 
     public async Task ProcessQueueMessageWebJobPdfPoison
     (
-      [QueueTrigger("webjob-pdf-poison")]
+      [QueueTrigger("%queueName%-poison")]
       string message,
       int DequeueCount,
       ILogger logger
