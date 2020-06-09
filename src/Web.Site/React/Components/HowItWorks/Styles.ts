@@ -11,10 +11,14 @@ interface IStyles {
 
 export default makeStyles((theme: Theme): IStyles => ({
   container: {
-    padding: theme.spacing(3),
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
   },
   paragraph: {
     marginTop: theme.spacing(2),
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
   },
   chip: {
     margin: theme.spacing(0.5),

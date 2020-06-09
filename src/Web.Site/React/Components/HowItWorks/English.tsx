@@ -11,12 +11,11 @@ export default (): React.ReactElement => {
 
   return (
     <>
-      <Typography variant="h2" align="center">
+      <Typography variant="h3" align="center" className={classes.paragraph} gutterBottom>
         How It Works
       </Typography>
-      <Divider />
-      <Typography variant="subtitle2" align="center" gutterBottom>
-        THIS IS A SIMPLE EXAMPLE OF ASYNC INTEGRATION USING AZURE WEBJOBS ON AN AZURE LINUX DOCKER COMPOSE WEBAPP.
+      <Typography variant="subtitle1" align="center" className={classes.paragraph} gutterBottom>
+        This is a simple example of async integration using Azure WebJobs on an Azure Linux docker-compose WebApp.
       </Typography>
       <Divider />
       <Typography variant="body1" align="justify" className={classes.paragraph} gutterBottom>
@@ -48,23 +47,26 @@ export default (): React.ReactElement => {
       <Typography variant="body1" align="justify" className={classes.paragraph}>
         Tech summary:
       </Typography>
-      <Chip label="ASP.NET Core" size="small" className={classes.chip} />
-      <Chip label="Azure" size="small" className={classes.chip} />
-      <Chip label="Azure Pipelines" size="small" className={classes.chip} />
-      <Chip label="Azure SQL" size="small" className={classes.chip} />
-      <Chip label="Azure Storage" size="small" className={classes.chip} />
-      <Chip label="Azure WebApp" size="small" className={classes.chip} />
-      <Chip label="Azure WebJobs" size="small" className={classes.chip} />
-      <Chip label="C#" size="small" className={classes.chip} />
-      <Chip label="Docker" size="small" className={classes.chip} />
-      <Chip label="GitHub" size="small" className={classes.chip} />
-      <Chip label="Material UI" size="small" className={classes.chip} />
-      <Chip label="React" size="small" className={classes.chip} />
-      <Chip label="Server Side Rendering" size="small" className={classes.chip} />
-      <Chip label="Linux" size="small" className={classes.chip} />
-      <Chip label="Alpine" size="small" className={classes.chip} />
-      <Chip label="NGINX" size="small" className={classes.chip} />
-      <Chip label="TypeScript" size="small" className={classes.chip} />
+
+      <Typography variant="body1" align="justify" className={classes.paragraph}>
+        <Chip label="ASP.NET Core" size="small" className={classes.chip} />
+        <Chip label="Azure" size="small" className={classes.chip} />
+        <Chip label="Azure Pipelines" size="small" className={classes.chip} />
+        <Chip label="Azure SQL" size="small" className={classes.chip} />
+        <Chip label="Azure Storage" size="small" className={classes.chip} />
+        <Chip label="Azure WebApp" size="small" className={classes.chip} />
+        <Chip label="Azure WebJobs" size="small" className={classes.chip} />
+        <Chip label="C#" size="small" className={classes.chip} />
+        <Chip label="Docker" size="small" className={classes.chip} />
+        <Chip label="GitHub" size="small" className={classes.chip} />
+        <Chip label="Material UI" size="small" className={classes.chip} />
+        <Chip label="React" size="small" className={classes.chip} />
+        <Chip label="Server Side Rendering" size="small" className={classes.chip} />
+        <Chip label="Linux" size="small" className={classes.chip} />
+        <Chip label="Alpine" size="small" className={classes.chip} />
+        <Chip label="NGINX" size="small" className={classes.chip} />
+        <Chip label="TypeScript" size="small" className={classes.chip} />
+      </Typography>
 
       <Divider className={classes.divider} />
 
@@ -105,25 +107,6 @@ export default (): React.ReactElement => {
       <Typography variant="h4" align="center">
         Azure Pipelines
       </Typography>
-      <Typography variant="body1" align="justify" className={classes.paragraph}>
-        This application is automatically built, tested and deployed by Azure Pipelines. Each
-        git push to
-        <Chip label="master" size="small" className={classes.label} />
-        or to a PR is built and tested by Azure Pipelines. If the build of
-        <Chip label="master" size="small" className={classes.label} />
-        branch is ok the Release takes place and updates the app using Docker integration.
-      </Typography>
-      <Typography variant="body1" align="justify" className={classes.paragraph}>
-        This is the public&nbsp;
-        <Link
-          href="https://dev.azure.com/ricardogaefke/ricardogaefke-pdf"
-          target="_blank"
-          title="ricardogaefke-pdf Azure Pipeline"
-        >
-          Azure Pipeline
-        </Link>
-        .
-      </Typography>
 
       <Table>
         <TableRow>
@@ -150,6 +133,26 @@ export default (): React.ReactElement => {
           </TableCell>
         </TableRow>
       </Table>
+
+      <Typography variant="body1" align="justify" className={classes.paragraph}>
+        This application is automatically built, tested and deployed by Azure Pipelines. Each
+        git push to
+        <Chip label="master" size="small" className={classes.label} />
+        or to a PR is built and tested by Azure Pipelines. If the build of
+        <Chip label="master" size="small" className={classes.label} />
+        branch is ok the Release takes place and updates the app using Docker integration.
+      </Typography>
+      <Typography variant="body1" align="justify" className={classes.paragraph} gutterBottom>
+        This is the public&nbsp;
+        <Link
+          href="https://dev.azure.com/ricardogaefke/ricardogaefke-pdf"
+          target="_blank"
+          title="ricardogaefke-pdf Azure Pipeline"
+        >
+          Azure Pipeline
+        </Link>
+        .
+      </Typography>
     </>
   );
 };
