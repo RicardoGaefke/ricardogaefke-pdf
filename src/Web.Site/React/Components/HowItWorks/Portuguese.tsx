@@ -37,7 +37,7 @@ export default (): React.ReactElement => {
           WebJobs do Azure
         </Link>
         &nbsp;Os WebJobs do Azure são serviços em segundo plano que são perfeitos para integração de
-        serviços e / ou tarefas de longa duração (como geração de PDF e chamadas de APIs externas).
+        serviços e/ou tarefas de longa duração (como geração de PDF e chamadas de APIs externas).
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph}>
         Os WebJobs executados conectados às Filas de Armazenamento do Azure e um dos melhores recursos
@@ -81,7 +81,7 @@ export default (): React.ReactElement => {
         GitHub
       </Typography>
       <Typography variant="body1" align="justify" className={classes.paragraph}>
-        O repositório completo (Web.Site + WebJob) desta aplicação de exemplo é
+        O repositório completo desta aplicação de exemplo é
         público e pode ser encontrado em&nbsp;
         <Link
           href="https://github.com/RicardoGaefke/ricardogaefke-pdf"
@@ -144,20 +144,20 @@ export default (): React.ReactElement => {
       </Table>
 
       <Typography variant="body1" align="justify" className={classes.paragraph}>
-        Esta aplicação tem
+        Esta aplicação tem&nbsp;
         <i>build</i>
-        , teste e
+        , teste e&nbsp;
         <i>deploy</i>
-        feitos automaticamente pelo Azure Pipelines. Cada vez que a branch
+        &nbsp;feitos automaticamente pelo Azure Pipelines. Cada vez que a branch
         <Chip label="master" size="small" className={classes.label} />
-        do repositório no GitHub é alterado, o
+        do repositório no GitHub é alterada, o&nbsp;
         <i>build</i>
-        é automático. Se tudo correr bem, o
+        &nbsp;é automático. Se tudo correr bem, o&nbsp;
         <i>deploy</i>
-        tem início imediato e atualiza a aplicação. Lembrando também que todos
+        &nbsp;tem início imediato e atualiza a aplicação. Lembrando também que todos
         os PRs feitos na branch
         <Chip label="master" size="small" className={classes.label} />
-        também são validados pelo
+        também são validados pelo&nbsp;
         <i>Pipeline</i>
         .
       </Typography>
