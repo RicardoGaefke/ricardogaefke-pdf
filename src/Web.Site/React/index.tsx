@@ -8,7 +8,7 @@ import MyApp from './Initial/App';
 
 const App = (): React.ReactElement<any> => {
   const appData = (window as unknown as ICustomWindow).MyInitialState;
-  // delete (window as unknown as ICustomWindow).MyInitialState;
+  delete (window as unknown as ICustomWindow).MyInitialState;
 
   return (
     <BrowserRouter>
