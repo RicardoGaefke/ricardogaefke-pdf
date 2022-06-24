@@ -63,7 +63,7 @@
     "formik": "^2.0.10",
     "html-webpack-plugin": "^3.2.0",
     "i18next": "^19.0.1",
-    "jsdom": "^15.2.1",
+    "jsdom": "^16.5.0",
     "jsdom-global": "^3.0.2",
     "material-ui-dropzone": "^2.4.5",
     "notistack": "^0.9.7",
